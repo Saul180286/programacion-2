@@ -1,0 +1,4 @@
+# Compilation files
+run
+*.o
+*.exe

@@ -1,0 +1,17 @@
+{
+  "name": "proyecto",
+  "description": "Proyecto de Programación II",
+  "authors": [
+    "Óscar Miranda (180165)",
+    "Adrián Robles (180312)",
+    "Saúl Casteñeda (180286)",
+    "Jared González (180206)"
+  ],
+  "version": "1",
+  "compiler": "g++",
+  "main": "main.cpp",
+  "outputDir": "./dist",
+  "include": [
+    "."
+  ]
+}

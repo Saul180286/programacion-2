@@ -1,4 +1,5 @@
 # Compilation files
+dist/
 run
 *.o
 *.exe

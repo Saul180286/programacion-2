@@ -4,11 +4,15 @@
 #include "kNN.h"
 
 int main() {
-	int k = 3, classes = 3;
+	int k, classes = 3;
 	int claseFinal;
 	char metodoOrdenamiento;
 
 	Dataset* d = new Dataset("iris.data.csv");
+	
+	cout << "Ingrese el valor de K: "; 
+	cin >> k; 
+	
 	kNN knn(d, k, classes);
 
 	cout << "[?] Ingrese el método de ordenamiento a utilizar (B, I): ";

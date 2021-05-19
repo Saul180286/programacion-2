@@ -2,7 +2,9 @@
 #define KNN_H
 
 #include "Dataset.h"
-#include "Bubble.h"
+#include "Sorting.h"
+#include "BubbleSort.h"
+#include "InsertionSort.h"
 
 class kNN {
 	private:
@@ -18,18 +20,33 @@ class kNN {
 			d->print();
 		}
 
-		int getClass(Point* p) {
+		int getClass(Point* p, char sortingMethod) {
 			float distances[d->getSize()];
 			int classes[d->getSize()];
 
+			// Calcular distancias entre los puntos.
 			for (int i = 0; i < d->getSize(); i++) {
 				distances[i] = *(d->getPoint(i)) - p;
 				classes[i] = d->getPoint(i)->getPClass();
 			}
 
-			Bubble *s = new Bubble(distances, classes, d->getSize());
+			// Ordenar las distancias.
+			Sorting *s;
+
+			switch (sortingMethod) {
+				case 'B':
+					s = new BubbleSort(distances, classes, d->getSize());
+					break;
+				case 'I':
+					s = new InsertionSort(distances, classes, d->getSize());
+					break;
+				default:
+					throw "ValueError: Método de ordenamiento no reconocido.";
+			}
+
 			s->sortAsc();
 
+			// Cuantificar las clases.
 			int classCount[this->classes];
 
 			for (int i = 0; i < this->classes; i++)
@@ -39,6 +56,7 @@ class kNN {
 				classCount[classes[i]]++;
 			}
 
+			// Obtener la clase con más apariciones.
 			float may = classCount[0];
 			int c = 0;
 
